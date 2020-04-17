@@ -1,0 +1,21 @@
+{
+  "name": "Chrome Extension with Remote Scripts",
+  "version": "3.0.0",
+  "description": "Chrome Extension with Remote Scripts",
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "browser_action": {
+    "default_popup": "html/popup.html",
+    "default_icon": "assets/icon-34.png"
+  },
+  "icons": {
+    "128": "assets/icon-128.png"
+  },
+  "manifest_version": 2,
+  "permissions": [
+    "http://*/"
+  ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval' http://localhost; object-src 'self'"
+}

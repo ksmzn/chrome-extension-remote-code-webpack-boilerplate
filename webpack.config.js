@@ -1,36 +1,41 @@
+const webpack = require('webpack');
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 
+const NODE_ENV = process.env.NODE_ENV;
+const ENV = NODE_ENV === 'production' ? 'production' : 'staging';
+
+const version = 'v1'
+const dist = `dist/${ENV}`;
+const STORAGE_PATH = `http://localhost:8001/${dist}/remote/${version}`
+
+const manifest =
+    NODE_ENV === 'production'
+        ? 'manifest.production.json'
+        : 'manifest.staging.json';
+
 module.exports = {
   entry: {
-    popup: path.join(__dirname, "src/popup.ts"),
-    options: path.join(__dirname, "src/options.ts"),
-    background: path.join(__dirname, "src/background.ts")
+    'app/popup': path.join(__dirname, "src/app/popup.ts"),
+    'app/background': path.join(__dirname, "src/app/background.ts"),
+    [`remote/${version}/popup`]: path.join(__dirname, "src/remote/popup/index.tsx"),
+    [`remote/${version}/background`]: path.join(__dirname, "src/remote/background/index.ts")
   },
   output: {
-    path: path.join(__dirname, "build"),
-    filename: "[name].js"
+    filename: "[name].js",
+    path: path.resolve(__dirname, dist)
   },
   module: {
     rules: [
       {
-        test: /\.tsx?$/,
-        use: {
-          loader: "ts-loader",
-          options: {
-            transpileOnly: true
-          }
-        }
+        test: /\.(j|t)sx?$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
       },
       {
         test: /\.css$/,
-        loader: "style-loader!css-loader",
-        exclude: /node_modules/
-      },
-      {
-        test: /\.html$/,
-        loader: "html-loader",
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
@@ -38,12 +43,25 @@ module.exports = {
     extensions: [".js", ".ts", ".tsx", ".json", ".mjs", ".wasm"]
   },
   plugins: [
-    // new CleanWebpackPlugin(),
+    new webpack.DefinePlugin({
+      STORAGE_URL: JSON.stringify(STORAGE_PATH),
+    }),
     new CopyWebpackPlugin([
       {
-        from: "assets/*",
-        flatten: true
+        from: path.join(__dirname, 'src', 'app', manifest),
+        to: path.join(__dirname, dist, 'app', 'manifest.json')
+      },
+      {
+        from: path.join(__dirname, 'src', 'app', 'html', '*.html'),
+        to: path.join(__dirname, dist),
+        context: 'src'
+      },
+      {
+        from: path.join(__dirname, 'src', 'app', 'assets', '**', '*'),
+        to: path.join(__dirname, dist),
+        context: 'src'
       }
-    ])
+    ],
+    { copyUnmodified: true })
   ]
 };

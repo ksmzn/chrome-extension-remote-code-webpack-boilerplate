@@ -1,0 +1,78 @@
+@import url('https://rsms.me/inter/inter.css');
+html,body {
+  font-size: 14px;
+  font-family: 'Inter', 'Roboto', sans-serif;
+}
+@supports (font-variation-settings: normal) {
+  html { font-family: 'Inter var', sans-serif; }
+}
+html,body,div,h1,h2,h3,h4,h5,h6,li,ul,ol,p,label,form,input,select,textarea,button,td,th,hr,blockquote,code {
+  margin: 0;
+  padding: 0;
+}
+html,body,button {
+  color: #3b4146;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-size: 100%;
+  font-weight: 400;
+}
+button,code,input,option,select,strong,textarea,th {
+  font: inherit;
+}
+a,button,i,img,input,label,select,textarea {
+  display: block;
+}
+a {
+  color: #178BC3;
+  text-decoration: none;
+}
+a:hover {
+  color: #179cd7;
+  text-decoration: underline;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+th {
+  text-align: left;
+}
+img {
+  vertical-align:bottom;
+}
+img,hr {
+  border: none;
+}
+li {
+  list-style: none;
+}
+button,input,select,textarea {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  outline :0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+textarea {
+  resize: none;
+}
+::-webkit-input-placeholder {
+  color: #d5d5d5;
+  font-weight: 200;
+  letter-spacing: 0.02em;
+}
+::-moz-placeholder {
+  color: #d5d5d5;
+  font-weight: 200;
+  letter-spacing: 0.02em;
+}
+::-ms-input-placeholder {
+  color: #d5d5d5;
+  font-weight: 200;
+  letter-spacing: 0.02em;
+}

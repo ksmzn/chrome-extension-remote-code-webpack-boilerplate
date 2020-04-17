@@ -1,8 +1,8 @@
-# Chrome Extension Webpack Boilerplate
+# Chrome Extension Webpack Boilerplate for Remote Script
 
 A basic foundation boilerplate for rich Chrome Extensions using [Webpack](https://webpack.github.io/)
 
-This repo is forked by @mizchi and modify to my custom (modernize and ts).
+This repo is forked by @ksmzn.
 
 ## Developing a new extension
 
@@ -17,7 +17,7 @@ This repo is forked by @mizchi and modify to my custom (modernize and ts).
    1. Access `chrome://extensions/`
    2. Check `Developer mode`
    3. Click on `Load unpacked extension`
-   4. Select the `build` folder.
+   4. Select the `dist/staging/app` folder.
 9. Have fun.
 
 See detail
@@ -37,11 +37,12 @@ yarn dev
 yarn build
 ```
 
-Now, the content of `build` folder will be the extension ready to be submitted to the Chrome Web Store. Just take a look at the [official guide](https://developer.chrome.com/webstore/publish) to more infos about publishing.
+Now, the content of `dist/staging/app` folder will be the extension ready to be submitted to the Chrome Web Store. Just take a look at the [official guide](https://developer.chrome.com/webstore/publish) to more infos about publishing.
 
 ## LICENSE
 
 MIT
 
+- Naoto Koshimizu ~ [@ksmzn](https://twitter.com/ksmzn)
 - Kotaro Chikuba ~ [@mizchi](https://twitter.com/mizchi)
 - Samuel Simões ~ [@samuelsimoes](https://twitter.com/samuelsimoes) ~ [Blog](http://blog.samuelsimoes.com/)

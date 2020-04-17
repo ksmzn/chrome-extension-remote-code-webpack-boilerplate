@@ -1,5 +1,6 @@
 MIT License
 
+Copyright (c) 2020 Naoto Koshimizu
 Copyright (c) 2020 Kotaro Chikuba
 Copyright (c) 2016 Samuel Simões
 
