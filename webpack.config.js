@@ -19,8 +19,10 @@ module.exports = {
   entry: {
     'app/popup': path.join(__dirname, "src/app/popup.ts"),
     'app/background': path.join(__dirname, "src/app/background.ts"),
+    'app/content': path.join(__dirname, "src/app/content.ts"),
     [`remote/${version}/popup`]: path.join(__dirname, "src/remote/popup/index.tsx"),
-    [`remote/${version}/background`]: path.join(__dirname, "src/remote/background/index.ts")
+    [`remote/${version}/background`]: path.join(__dirname, "src/remote/background/index.ts"),
+    [`remote/${version}/content`]: path.join(__dirname, "src/remote/content/index.ts")
   },
   output: {
     filename: "[name].js",

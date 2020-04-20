@@ -18,5 +18,14 @@
     "https://storage.cloud.google.com/",
     "http://*/"
   ],
-  "content_security_policy": "script-src 'self' 'unsafe-eval' http://127.0.0.1 https://storage.cloud.google.com; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval' http://127.0.0.1 https://storage.cloud.google.com; object-src 'self'",
+  "content_scripts": [{
+    "matches": [
+      "https://www.facebook.com/*"
+    ],
+    "js": [
+      "./content.js"
+    ],
+    "run_at": "document_end"
+  }]
 }
