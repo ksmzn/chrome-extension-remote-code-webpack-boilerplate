@@ -1,18 +1,19 @@
 const webpack = require('webpack');
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const NODE_ENV = process.env.NODE_ENV;
 const ENV = NODE_ENV === 'production' ? 'production' : 'staging';
 
-const version = 'v1'
-const dist = `dist/${ENV}`;
-const STORAGE_PATH = `http://localhost:8001/${dist}/remote/${version}`
-
 const manifest =
-    NODE_ENV === 'production'
+    ENV === 'production'
         ? 'manifest.production.json'
         : 'manifest.staging.json';
+
+const version = 'v1'
+const dist = `dist/${ENV}`;
+const STORAGE_PATH = `http://127.0.0.1:8001/${dist}/remote/${version}`
 
 module.exports = {
   entry: {
@@ -28,7 +29,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(j|t)sx?$/,
+        test: /\.([jt])sx?$/,
         exclude: /node_modules/,
         use: 'babel-loader'
       },
@@ -46,6 +47,7 @@ module.exports = {
     new webpack.DefinePlugin({
       STORAGE_URL: JSON.stringify(STORAGE_PATH),
     }),
+    new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
       {
         from: path.join(__dirname, 'src', 'app', manifest),

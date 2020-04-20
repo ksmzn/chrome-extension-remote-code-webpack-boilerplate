@@ -15,7 +15,8 @@
   },
   "manifest_version": 2,
   "permissions": [
+    "https://storage.cloud.google.com/",
     "http://*/"
   ],
-  "content_security_policy": "script-src 'self' 'unsafe-eval' http://localhost; object-src 'self'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval' http://127.0.0.1 https://storage.cloud.google.com; object-src 'self'"
 }
